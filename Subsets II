@@ -1,0 +1,39 @@
+class Solution {
+    static HashSet<List<Integer>> hs=new HashSet();
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        
+        hs.clear();
+        Solution obj=new Solution();
+        List<Integer> lst=new ArrayList<Integer>();
+        List<List<Integer>> arr=new ArrayList<>();
+        arr.clear();
+       // Arrays.sort(nums);
+        
+        obj.cal(lst,nums,0,nums.length,arr);
+        return arr;
+    }
+    public void cal(List<Integer> lst,int[] nums,int ind,int N,List<List<Integer>> arr)
+    {
+        //System.out.println(ind);
+       if(ind==N)
+       { 
+           List<Integer> lst2=new ArrayList<Integer>();
+           lst2.addAll(lst);
+           Collections.sort(lst2);
+           if(!hs.contains(lst2))
+       {   hs.add(lst2);
+           arr.add(new ArrayList<>(lst2));}
+       }
+       else
+       {  
+         
+           lst.add(nums[ind]);
+           cal(lst,nums,ind+1,N,arr);
+             if(!lst.isEmpty())
+           lst.remove(lst.size()-1);
+           cal(lst,nums,ind+1,N,arr);
+           
+       }
+    }
+
+}
