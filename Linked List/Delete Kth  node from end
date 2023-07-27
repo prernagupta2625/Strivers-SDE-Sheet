@@ -1,0 +1,74 @@
+/****************************************************************
+
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+     public Node prev;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+         this.prev = null;
+     }
+
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+         this.prev = null;
+     }
+
+     Node(int data, Node next)
+     {
+         this.data = data;
+         this.next = next;
+         this.prev = next;
+     }
+ };
+
+ *****************************************************************/
+
+public class Solution
+{
+    public static Node removeKthNode(Node head, int k)
+    {
+        // Write your code here.
+        int total=0,num,f=1;
+        Node ptr=head,ptr1=head;
+        while(ptr!=null)
+        {
+            total+=1;
+            
+            ptr=ptr.next;
+            
+        }
+        num=total-k+1;
+       
+        if(num==1)
+        head=head.next;
+        else
+        {
+        while(f<=num)
+        {
+            if(f+1==num)
+            {
+              
+                
+                ptr1.next=ptr1.next.next;
+                break;
+            }
+            else
+            {
+                f++;
+                ptr1=ptr1.next;
+            }
+            
+
+        }
+        }
+        return head;
+    }
+}
