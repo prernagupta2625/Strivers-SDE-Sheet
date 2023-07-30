@@ -1,0 +1,51 @@
+import java.util.* ;
+import java.io.*; 
+/*   
+    Following is the Binary Tree node structure for referance:
+
+    class TreeNode
+    {
+        int data;
+        TreeNode left, right;
+    
+        public TreeNode(int item)
+        {
+            data = item;
+            left = right = null;
+        }
+    }
+*/
+
+public class Solution {
+
+    static int f=0;
+    public static ArrayList<Integer> pathInATree(TreeNode root, int x) {
+        // Write your code here..
+        f=0;
+        ArrayList<Integer> arr=new ArrayList<Integer>();
+        func(root,x,arr);
+        return arr;
+
+    }
+    static void func(TreeNode node,int x,ArrayList<Integer> arr)
+    {
+        if(node==null)
+        return;
+        if(node.data==x)
+        {
+            arr.add(node.data);
+            f=1;
+            return ;
+        }
+        if(f==0)
+        {
+        arr.add(node.data);
+        func(node.left,x,arr);
+        func(node.right,x,arr);
+        if(f==1)
+        return;
+        arr.remove(arr.size()-1);
+        }
+        
+    }
+}
