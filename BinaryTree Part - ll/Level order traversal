@@ -18,26 +18,29 @@ import java.io.*;
 
 */
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Solution {
 
   public static ArrayList<Integer> getLevelOrder(BinaryTreeNode root) {
     //Your code goes here
+    Queue<BinaryTreeNode> que=new LinkedList<>();
+    que.add(root);
+    que.add(null);
+    ArrayList<Integer> list=new ArrayList<>();
+    func(list,que);
+    return list;
   }
-  static void func(ArrayList<Integer> list,Queue<TreeNode> que)
+  static void func(ArrayList<Integer> list,Queue<BinaryTreeNode> que)
     {
          while(que.peek()!=null)
          {
              int f=0;
              while(que.peek()!=null)
              {
-                 TreeNode<Integer> node=que.remove();
-                 int d=node.data;
-                 if(f==0)
-                 {list.add(d);
-                 f=1;
-                 }
+                 BinaryTreeNode node=que.remove();
+                 int d=node.val;
+                 list.add(d);
                  if(node.left!=null)
                  que.add(node.left);
                  if(node.right!=null)
