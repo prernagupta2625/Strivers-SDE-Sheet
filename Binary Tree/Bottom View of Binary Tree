@@ -1,0 +1,48 @@
+
+class pair{
+    int pos;
+    Node node;
+    pair(){
+        pos=0;
+        node=null;
+    }
+    pair(int posi,Node nod){
+        pos=posi;
+        node=nod;
+    }
+}
+
+class Solution
+{
+    //Function to return a list containing the bottom view of the given tree.
+    public ArrayList <Integer> bottomView(Node root)
+    {
+        // Code here
+       Map<Integer,Integer> mp=new TreeMap<>();
+        Queue<pair> que=new LinkedList<>();
+        ArrayList<Integer> list= new ArrayList<Integer>();
+     if(root==null)
+     return list;
+        que.add(new pair(0,root));
+        
+        while(!que.isEmpty())
+        {
+            pair obj=que.poll();
+            
+            int data=obj.node.data;
+            int pos=obj.pos;
+            mp.put(pos,data);
+            if(obj.node.left!=null)
+            que.add(new pair(obj.pos-1,obj.node.left));
+            if(obj.node.right!=null)
+            que.add(new pair(obj.pos+1,obj.node.right));
+        }
+        
+        for(Map.Entry<Integer,Integer> entry: mp.entrySet())
+        {
+            list.add(entry.getValue());
+        }
+        return list;
+        
+    }
+}
