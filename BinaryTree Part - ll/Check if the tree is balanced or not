@@ -1,0 +1,32 @@
+class Tree
+{
+    
+    //Function to check whether a binary tree is balanced or not.
+    static boolean truth;
+    boolean isBalanced(Node root)
+    {
+	// Your code here
+	truth=true;
+	func(root);
+	return truth;
+    }
+    
+    static int func(Node node)
+    {
+        if(node==null)
+        return 0;
+        
+        int left=func(node.left);
+        int right=func(node.right);
+        if(Math.abs(left-right)>1)
+        {
+            truth=false;
+            return 0;
+        }
+        else
+        {
+            return (Math.max(left,right)+1);
+        }
+    }
+}
+
