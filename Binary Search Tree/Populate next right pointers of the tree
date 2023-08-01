@@ -1,0 +1,43 @@
+class Solution
+{
+    //Function to connect nodes at same level.
+    public void connect(Node root)
+    {
+        // Your code goes here.
+        		Queue<Node> que=new LinkedList<>();
+		que.add(root);
+		que.add(null);
+		Node node=new Node(-1);
+		int f=0;
+		while(que.peek()!=null)
+		{
+		    f=0;
+		    while(que.peek()!=null)
+		    {
+		        Node n=que.remove();
+		        if(f==0)
+		        {
+		            node=n;
+		            f=1;
+		        }
+		        else
+		        {
+		            node.nextRight=n;
+		            node=n;
+		        }
+		        if(que.peek()==null)
+		        node.nextRight=null;
+		        if(n.left!=null)
+		        que.add(n.left);
+		        if(n.right!=null)
+		        que.add(n.right);
+		        
+		    }
+		    
+		    que.remove();
+		    que.add(null);
+		    
+		}
+		
+    }
+}
