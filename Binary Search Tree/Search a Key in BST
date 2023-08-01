@@ -1,0 +1,18 @@
+class BST {
+    // Function to search a node in BST.
+    boolean search(Node root, int x) {
+        // Your code here
+        if(root==null)
+        return false;
+        
+        if(x==root.data)
+        return true;
+        
+        BST obj=new BST();
+        if(x<root.data)
+        return obj.search(root.left,x);
+        else 
+        return obj.search(root.right,x);
+        
+    }
+}
