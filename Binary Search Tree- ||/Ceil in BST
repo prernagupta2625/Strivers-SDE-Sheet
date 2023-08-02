@@ -1,0 +1,23 @@
+class Tree {
+    // Function to return the ceil of given number in BST.
+    int findCeil(Node root, int key) {
+        if (root == null) return -1;
+        // Code here
+        if(root.data==key)
+        return key;
+        else if(root.data> key)
+        {
+            int n=findCeil(root.left,key);
+            if(n<root.data && n>=key  )
+            return n;
+            else
+            return root.data;
+        }
+        else
+        {
+            int n=findCeil(root.right,key);
+            return n;
+        }
+        
+    }
+}
