@@ -1,0 +1,47 @@
+class Solution {
+    // Return the Kth smallest element in the given BST
+    static Node n=null;
+    public int KthSmallestElement(Node root, int K) {
+        // Write your code here
+        n=null;
+        func(root,new int[]{K-1});
+        int num;
+        if(n!=null)
+         num=n.data;
+        else
+        num=-1;
+        return num;
+        
+    }
+    static void func(Node node,int pos[])
+    {
+        if(node.left==null && node.right==null)
+        {
+            if(pos[0]==0)
+       {
+           pos[0]-=1;
+           n=node;
+           return;
+       }
+            pos[0]-=1;
+        return;
+        }
+       if(node.left!=null)
+       {
+           func(node.left,pos);
+       }
+       if(pos[0]==0)
+       {
+           pos[0]-=1;
+           n=node;
+           return;
+       }
+       else
+       pos[0]-=1;
+       if(node.right!=null)
+       {
+           func(node.right,pos);
+       }
+        
+    }
+}
