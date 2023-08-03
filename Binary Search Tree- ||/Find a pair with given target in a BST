@@ -1,0 +1,29 @@
+class Solution
+{
+    // root : the root Node of the given BST
+    // target : the target sum
+    static int val=0;
+    public int isPairPresent(Node root, int target)
+    {
+        // Write your code here
+        val=0;
+        func(root,new HashSet<Integer>(),target);
+        return val;
+        
+    }
+    public static void func(Node root,HashSet<Integer> hs,int target)
+    {
+        if(root==null)
+        return;
+        if(hs.contains(target-root.data))
+        {
+            val=1;
+        }
+        else
+        {
+            hs.add(root.data);
+            func(root.left,hs,target);
+            func(root.right,hs,target);
+        }
+    }
+}
