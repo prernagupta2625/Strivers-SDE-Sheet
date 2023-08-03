@@ -1,0 +1,49 @@
+//User function Template for Java
+
+// class Node  
+// { 
+//     int data; 
+//     Node left, right; 
+   
+//     public Node(int d)  
+//     { 
+//         data = d; 
+//         left = right = null; 
+//     } 
+// }
+class ans{
+    int min,max,size;
+    
+    ans(int minno,int maxno,int quantity)
+    {
+        min=minno;
+        max=maxno;
+        size=quantity;
+    }
+    
+}
+
+class Solution{
+    
+    // Return the size of the largest sub-tree which is also a BST
+    static int largestBst(Node root)
+    {
+        // Write your code here
+      return func(root).size;
+        
+        
+    }
+    static ans func(Node node)
+    {
+        if(node==null)
+        return  new ans(Integer.MAX_VALUE,Integer.MIN_VALUE,0);
+        ans left=func(node.left);
+        ans right=func(node.right);
+        
+        if(node.data>left.max && node.data<right.min)
+        return new ans(Math.min(left.min,node.data),Math.max(right.max,node.data),left.size+right.size+1);
+       else
+       return new ans(Integer.MIN_VALUE,Integer.MAX_VALUE,Math.max(left.size,right.size));
+    }
+    
+}
