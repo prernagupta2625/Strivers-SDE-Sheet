@@ -1,0 +1,32 @@
+class Solution
+{
+   static Stack<Node> st=new Stack<>();
+    public static void flatten(Node root)
+    {
+        //code here
+        func(root);
+        Node n=null;
+        while(!st.isEmpty())
+        {
+            if(n==null)
+            n=st.pop();
+            else
+            {
+                Node node=st.pop();
+                node.right=n;
+                node.left=null;
+                n=node;
+            }
+        }
+        
+        
+    }
+    static void func(Node node)
+    {
+        if(node==null)
+        return;
+        st.push(node);
+        func(node.left);
+        func(node.right);
+    }
+}
