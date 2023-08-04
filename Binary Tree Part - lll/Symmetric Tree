@@ -1,0 +1,42 @@
+/*
+class of the node of the tree is as
+class Node{
+    int data;
+    Node left;
+    Node right;
+    Node(int data){
+        this.data = data;
+        left=null;
+        right=null;
+    }
+}
+
+*/
+// complete this function
+// return true/false if the is Symmetric or not
+class GfG
+{
+    // return true/false denoting whether the tree is Symmetric or not
+    public static boolean isSymmetric(Node root)
+    {
+        // add your code here;
+        if(root==null)
+        return true;
+        return func(root.left,root.right);
+        
+    }
+    public static boolean func(Node node1,Node node2)
+    {
+        if(node1==null && node2==null)
+        return true;
+        else if(node1!=null && node2!=null)
+       { if(node1.data==node2.data)
+        return func(node1.left,node2.right) && func(node1.right,node2.left);
+        else
+        return false;
+       }
+       else
+       return false;
+       
+    }
+}
