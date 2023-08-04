@@ -1,0 +1,113 @@
+/*Complete the given function
+Node is as follows:
+class Tree{
+	int data;
+	Tree left,right;
+	Tree(int d){
+		data=d;
+		left=right=null;
+	}
+}*/
+
+class Tree 
+{
+    //Function to serialize a tree and return a list containing nodes of tree.
+	public void serialize(Node root, ArrayList<Integer> A) 
+	{
+	    //code here
+	    Queue<Node> que=new LinkedList<>();
+	    que.add(root);
+	    que.add(null);
+	   A.add(root.data);
+	    while(que.peek()!=null)
+	    {
+	        ArrayList<Integer> arr=new ArrayList<>();
+	        arr.clear();
+	        while(que.peek()!=null)
+	        {
+	            Node n=que.remove();
+	            
+	            if(n.left==null)
+	            arr.add(0);
+	            else
+	            {que.add(n.left);
+	            arr.add(n.left.data);
+	            }
+	            if(n.right==null)
+	            arr.add(0);
+	            else
+	            {
+	            que.add(n.right);
+	            arr.add(n.right.data);
+	            }
+	            
+	            
+	        }
+	        que.add(null);
+	        que.remove();
+	        A.add(-1);
+	        A.addAll(arr);
+	        
+	        
+	    }
+	    
+	    
+	}
+
+	
+	//Function to deserialize a list and construct the tree.
+    public Node deSerialize(ArrayList<Integer> A)
+    {
+        //code here
+        Queue<Node> que=new LinkedList<>();
+        int i=0;
+        Node root=new Node(A.get(i));
+       
+        que.add(root);
+         que.add(null);
+        i=2;
+        
+      
+      
+       while(que.peek()!=null)
+       {
+           while(que.peek()!=null)
+           {
+               int num=A.get(i);
+               
+              if(num==-1)
+              {
+                  i+=1;
+                  break;
+              }
+              
+               Node n=que.remove();
+                
+               if(num!=0)
+               {
+                   Node node=new Node(num);
+                   n.left=node;
+                   que.add(node);
+               }
+               i+=1;
+               num=A.get(i);
+              
+               if(num!=0)
+               {
+                   Node node=new Node(num);
+                   n.right=node;
+                   que.add(node);
+               }
+               i+=1;
+               
+               if(que.peek()==null)
+               {
+                    que.add(null);
+           que.remove();
+               }
+           }
+          
+       }
+       return root;
+    }
+};
