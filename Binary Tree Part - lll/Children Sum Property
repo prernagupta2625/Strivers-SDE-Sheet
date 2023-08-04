@@ -1,0 +1,37 @@
+
+/*Complete the function below
+Node is as follows:
+class Node{
+	int data;
+	Node left,right;
+	
+	Node(int key)
+	{
+	    data = key;
+	    left = right = null;
+	}
+}
+
+*/
+class Tree
+{
+    //Function to check whether all nodes of a tree have the value 
+    //equal to the sum of their child nodes.
+    public static int isSumProperty(Node node)
+    {
+      if(node==null)
+      return 1;
+      int left=0,right=0;
+      if(node.left!=null)
+      left=node.left.data;
+      if(node.right!=null)
+      right=node.right.data;
+      if(node.left==null && node.right==null)
+      return 1;
+      if((left+right)!=node.data)
+      return 0; 
+      else
+      return isSumProperty(node.left) & isSumProperty(node.right);
+        
+    }
+}
